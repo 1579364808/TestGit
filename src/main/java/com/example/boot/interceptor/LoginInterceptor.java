@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
  * @date: 2022/9/3 18:17
  * @description:
  */
+
+/**
+* 1.配置好拦截器要拦截哪些目标
+ *2.把这些配置放在容器中
+**/
 @Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
@@ -27,7 +32,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (loginUser!=null){
             return true;
         }
-        session.setAttribute("msg","请先登录");
+        //拦截住。未登录。跳转到登录页
+        request.setAttribute("msg","请先登录");
 //        response.sendRedirect("/");  重定向就拿不到消息了
         request.getRequestDispatcher("/").forward(request,response);
         return false;
