@@ -22,6 +22,11 @@ public class IndexController {
     public String loginPage(){
         return "login";
     }
+    @GetMapping(value = "/logOut")
+    public String logOut(HttpSession session){
+        session.setAttribute("loginUser",null);
+        return "redirect:login";
+    }
 
 
     /*为了防止表单的重复提交   需要进行重定向*/
