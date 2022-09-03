@@ -42,13 +42,6 @@ public class IndexController {
     //刷新就等于是这个请求(这个不能少，不是static目录下文件)
     @GetMapping("/main.html")
     public String mainPage(HttpSession session,Model model){
-        //是否登录。 拦截器，过滤器
-        Object loginUser = session.getAttribute("loginUser");
-        if(loginUser!=null){
-            return "main";
-        }else {
-            model.addAttribute("msg", "当前未登录");
-            return "login";
-        }
+        return "main";
     }
 }
